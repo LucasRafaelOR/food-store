@@ -1,17 +1,20 @@
 package br.edu.ifpb.padroes.service.mail;
 
-import br.edu.ifpb.padroes.domain.Customer;
-
 public class EmailNotification {
+    private currentState : State;
 
-    private String emailAdministration = "contact@food-store.com";
-
-    public void sendMailNotification(String message, Customer customer) {
-        System.out.println("send mail notification to "+ customer.getEmail());
+    public EmailNotification(State s)
+    {
+        this.currentState = s;
     }
 
-    public void sendMailNotification(String message) {
-        System.out.println("send mail notification to ="+emailAdministration);
+    public void setState(State s)
+    {
+        this.currentState = s;
+    }
+
+    public void sendMailNotification(String message, String to) {
+        this.currentState.sendEmail(message, to);
     }
 
 
